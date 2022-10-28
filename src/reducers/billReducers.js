@@ -5,21 +5,21 @@ const initialState = {
         {
             "id": 0,
             "description": "Dominoes",
-            "category": "FoodNDining",
+            "category": "Food & Dining",
             "amount": 430,
             "date": "2020/01/02"
         },
         {
             "id": 1,
             "description": "Car wash",
-            "category": "utility",
+            "category": "Utility",
             "amount": 500,
             "date": "2020/01/03"
         },
         {
             "id": 2,
             "description": "Amazon",
-            "category": "shopping",
+            "category": "Shopping",
             "amount": 2030,
             "date": "2020/01/13"
         }
