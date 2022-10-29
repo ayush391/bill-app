@@ -10,6 +10,8 @@ const View = () => {
         return state.billReducers.bills
     });
 
+    const sortedBills = [...bills].sort((bill1,bill2)=>{return bill2.amount-bill1.amount})
+
     const dispatch = useDispatch();
 
     const remove = (id) => {
@@ -19,7 +21,7 @@ const View = () => {
     const [inputId, setInputId] = useState(0);
     const [inputDesc, setInputDesc] = useState('');
     const [inputCat, setInputCat] = useState('Select Category');
-    const [inputAmount, setInputAmount] = useState();
+    const [inputAmount, setInputAmount] = useState(0);
     const [filterCat, setFilterCat] = useState('Select Category');
 
     const changeDesc = (event) => {
@@ -29,11 +31,11 @@ const View = () => {
         setInputCat(event.target.value)
     }
     const changeAmount = (event) => {
-        setInputAmount(event.target.value)
+        setInputAmount(Number(event.target.value))
 
     }
 
-    const updateBill = (e) => {
+    const updateBill =async (e) => {
         e.preventDefault();
         const id = inputId;
         const data = {
@@ -42,8 +44,8 @@ const View = () => {
             amount: inputAmount ? inputAmount : 0
         }
 
-        dispatch(editBill(id, data));
-        editModal.current.click();
+        await dispatch(editBill(id, data));
+        await editModal.current.click();
     }
 
     const editFilter = (e) => {
@@ -53,10 +55,10 @@ const View = () => {
     const editModal = useRef(null);
 
     const toggleModal = (id) => {
-        setInputId(id)
-        setInputDesc(bills[id].description)
-        setInputAmount(bills[id].amount)
-        setInputCat(bills[id].category)
+        setInputId(id);
+        setInputDesc(bills[id].description);
+        setInputAmount(bills[id].amount);
+        setInputCat(bills[id].category);
         editModal.current.click();
     }
 
@@ -66,6 +68,7 @@ const View = () => {
             <h3>Your Bills</h3>
             <select className="form-select" aria-label="Default select example" value={filterCat} onChange={(e)=>editFilter(e)}>
                 <option value='Select Category'>Select Category</option>
+                <option value='General'>General</option>
                 <option value="Food & Dining">Food & Dining</option>
                 <option value="Utility">Utility</option>
                 <option value="Shopping">Shopping</option>
@@ -75,7 +78,7 @@ const View = () => {
             </select>
 
             {
-                bills.map((bill) => {
+                sortedBills.map((bill) => {
                     if (filterCat === 'Select Category' || bill.category === filterCat) {
                         return (
                             <div className='col-lg-3' key={bill.id}>
@@ -90,12 +93,13 @@ const View = () => {
                                     </ul>
                                     <div className='card-footer'>
                                         <button className='btn btn-warning me-2' onClick={() => toggleModal(bill.id)}>Edit</button>
-                                        <button className='btn btn-danger me-2' onClick={() => dispatch(remove(bill.id))}> Delete</button>
+                                        <button className='btn btn-danger me-2' onClick={() => dispatch(removeBill(bill.id))}> Delete</button>
                                     </div>
                                 </div>
                             </div>
-                        )
+                        );
                     }
+                    return(null);
                 })
             }
 
