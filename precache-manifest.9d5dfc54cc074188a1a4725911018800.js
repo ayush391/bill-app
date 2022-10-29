@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "d58b2fec2447d0f541e7",
+    "revision": "44cffd64214e56282355",
     "url": "/bill-app/static/css/main.1c363147.chunk.css"
   },
   {
-    "revision": "d58b2fec2447d0f541e7",
-    "url": "/bill-app/static/js/main.d58b2fec.chunk.js"
+    "revision": "44cffd64214e56282355",
+    "url": "/bill-app/static/js/main.44cffd64.chunk.js"
   },
   {
     "revision": "9a706a69ef0a8c3185a3",
@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/bill-app/static/js/runtime~main.16aae54e.js"
   },
   {
-    "revision": "5f1d83970078c6695002ab69c0bfd03a",
+    "revision": "29bebe311d69fabce89ab9ea2a89ea64",
     "url": "/bill-app/index.html"
   }
 ];

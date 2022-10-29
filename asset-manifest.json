@@ -1,7 +1,7 @@
 {
   "main.css": "/bill-app/static/css/main.1c363147.chunk.css",
-  "main.js": "/bill-app/static/js/main.d58b2fec.chunk.js",
-  "main.js.map": "/bill-app/static/js/main.d58b2fec.chunk.js.map",
+  "main.js": "/bill-app/static/js/main.44cffd64.chunk.js",
+  "main.js.map": "/bill-app/static/js/main.44cffd64.chunk.js.map",
   "static/js/1.9a706a69.chunk.js": "/bill-app/static/js/1.9a706a69.chunk.js",
   "static/js/1.9a706a69.chunk.js.map": "/bill-app/static/js/1.9a706a69.chunk.js.map",
   "static/js/2.33389714.chunk.js": "/bill-app/static/js/2.33389714.chunk.js",
@@ -10,6 +10,6 @@
   "runtime~main.js.map": "/bill-app/static/js/runtime~main.16aae54e.js.map",
   "static/css/main.1c363147.chunk.css.map": "/bill-app/static/css/main.1c363147.chunk.css.map",
   "index.html": "/bill-app/index.html",
-  "precache-manifest.865132123aee0c82b8cf23c771033969.js": "/bill-app/precache-manifest.865132123aee0c82b8cf23c771033969.js",
+  "precache-manifest.9d5dfc54cc074188a1a4725911018800.js": "/bill-app/precache-manifest.9d5dfc54cc074188a1a4725911018800.js",
   "service-worker.js": "/bill-app/service-worker.js"
 }
