@@ -10,7 +10,9 @@ const View = () => {
         return state.billReducers.bills
     });
 
-    const sortedBills = [...bills].sort((bill1,bill2)=>{return bill2.amount-bill1.amount})
+    const sortedBills = [...bills].sort((bill1, bill2) => { return bill2.amount - bill1.amount });
+
+
 
     const dispatch = useDispatch();
 
@@ -22,6 +24,7 @@ const View = () => {
     const [inputDesc, setInputDesc] = useState('');
     const [inputCat, setInputCat] = useState('Select Category');
     const [inputAmount, setInputAmount] = useState(0);
+    const [inputBudget, setInputBudget] = useState();
     const [filterCat, setFilterCat] = useState('Select Category');
 
     const changeDesc = (event) => {
@@ -32,10 +35,15 @@ const View = () => {
     }
     const changeAmount = (event) => {
         setInputAmount(Number(event.target.value))
+    }
+    const changeBudget = (event) => {
+        setInputBudget(Number(event.target.value))
 
     }
 
-    const updateBill =async (e) => {
+    var currBudgetAmt = inputBudget;
+
+    const updateBill = async (e) => {
         e.preventDefault();
         const id = inputId;
         const data = {
@@ -48,6 +56,9 @@ const View = () => {
         await editModal.current.click();
     }
 
+    const setBudget = (e) => {
+        // setFilterCat(e.target.value);
+    }
     const editFilter = (e) => {
         setFilterCat(e.target.value);
     }
@@ -66,24 +77,37 @@ const View = () => {
     return (
         <div className='row gy-3'>
             <h3>Your Bills</h3>
-            <select className="form-select" aria-label="Default select example" value={filterCat} onChange={(e)=>editFilter(e)}>
-                <option value='Select Category'>Select Category</option>
-                <option value='General'>General</option>
-                <option value="Food & Dining">Food & Dining</option>
-                <option value="Utility">Utility</option>
-                <option value="Shopping">Shopping</option>
-                <option value="Education">Education</option>
-                <option value="Personal Care">Personal Care</option>
-                <option value="Travel">Travel</option>
-            </select>
+            <div className="mb-3">
+                <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="Your Budget" value={inputBudget} onChange={changeBudget} />
+                {/* <button className='btn btn-warning mt-2' onClick={()=>setBudget()}>Set</button> */}
+                <select className="form-select mt-2" aria-label="Default select example" value={filterCat} onChange={(e) => editFilter(e)}>
+                    <option value='Select Category'>Select Category</option>
+                    <option value='General'>General</option>
+                    <option value="Food & Dining">Food & Dining</option>
+                    <option value="Utility">Utility</option>
+                    <option value="Shopping">Shopping</option>
+                    <option value="Education">Education</option>
+                    <option value="Personal Care">Personal Care</option>
+                    <option value="Travel">Travel</option>
+                </select>
+
+                <div className='mt-3'>
+                    <i className='text-bg-danger me-2 p-2'>Within Budget</i>
+                    <i className='text-bg-secondary me-2 p-2'>Out of Budget</i>
+                </div>
+            </div>
 
             {
                 sortedBills.map((bill) => {
                     if (filterCat === 'Select Category' || bill.category === filterCat) {
+                        if (bill.amount <= inputBudget) {
+                            currBudgetAmt = currBudgetAmt - bill.amount;
+                        }
+                        console.log(currBudgetAmt);
                         return (
                             <div className='col-lg-3' key={bill.id}>
                                 <div className="card">
-                                    <div className="card-header text-white text-bg-secondary">
+                                    <div className={"card-header text-white " + (currBudgetAmt >= 0 && bill.amount <= inputBudget ? "text-bg-danger" : "text-bg-secondary")}>
                                         {bill.description}
                                     </div>
                                     <ul className="list-group list-group-flush">
@@ -97,9 +121,10 @@ const View = () => {
                                     </div>
                                 </div>
                             </div>
+
                         );
                     }
-                    return(null);
+                    return (null);
                 })
             }
 

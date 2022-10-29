@@ -18,7 +18,7 @@ const Add = () => {
         setInputCat(event.target.value)
     }
     const changeAmount = (event) => {
-        setInputAmount(event.target.value)
+        setInputAmount(Number(event.target.value))
     }
 
     const submitBill = (event)=>{
