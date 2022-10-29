@@ -2,7 +2,7 @@
   "name": "bill-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://ayush391.github.io/bill_app",
+  "homepage": "https://ayush391.github.io/bill-app",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
