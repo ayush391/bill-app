@@ -24,6 +24,7 @@ const View = () => {
     const [inputDesc, setInputDesc] = useState('');
     const [inputCat, setInputCat] = useState('Select Category');
     const [inputAmount, setInputAmount] = useState(0);
+    const [inputDate, setInputDate] = useState();
     const [inputBudget, setInputBudget] = useState();
     const [filterCat, setFilterCat] = useState('Select Category');
 
@@ -36,6 +37,9 @@ const View = () => {
     const changeAmount = (event) => {
         setInputAmount(Number(event.target.value))
     }
+    const changeDate = (event) => {
+        setInputDate(event.target.value)
+    }
     const changeBudget = (event) => {
         setInputBudget(Number(event.target.value))
 
@@ -46,10 +50,12 @@ const View = () => {
     const updateBill = async (e) => {
         e.preventDefault();
         const id = inputId;
+        const date = inputDate ? new Date(inputDate).toLocaleDateString('en-ZA') : new Date().toLocaleDateString('en-ZA')
         const data = {
             description: inputDesc ? inputDesc : "Untitled",
             category: inputCat === "Select Category" ? "General" : inputCat,
-            amount: inputAmount ? inputAmount : 0
+            amount: inputAmount ? inputAmount : 0,
+            date: date
         }
 
         await dispatch(editBill(id, data));
@@ -70,6 +76,8 @@ const View = () => {
         setInputDesc(bills[id].description);
         setInputAmount(bills[id].amount);
         setInputCat(bills[id].category);
+        setInputDate(bills[id].date)
+
         editModal.current.click();
     }
 
@@ -157,6 +165,9 @@ const View = () => {
                                 </div>
                                 <div className="mb-3">
                                     <input type="number" className="form-control" id="exampleFormControlInput1" placeholder="Amount" value={inputAmount} onChange={changeAmount} />
+                                </div>
+                                <div className="mb-3">
+                                    <input type="date" className="form-control" id="exampleFormControlInput1" placeholder="Date" value={inputDate} onChange={changeDate} />
                                 </div>
                             </form>
                         </div>

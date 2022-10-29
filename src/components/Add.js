@@ -9,6 +9,7 @@ const Add = () => {
     const [inputDesc, setInputDesc] = useState('');
     const [inputCat, setInputCat] = useState('Select Category');
     const [inputAmount, setInputAmount] = useState();
+    const [inputDate, setInputDate] = useState();
     const dispatch = useDispatch()
 
     const changeDesc = (event) => {
@@ -20,13 +21,18 @@ const Add = () => {
     const changeAmount = (event) => {
         setInputAmount(Number(event.target.value))
     }
+    const changeDate = (event) => {
+        setInputDate(event.target.value)
+    }
 
     const submitBill = (event)=>{
         event.preventDefault();
+        const date = inputDate?new Date(inputDate).toLocaleDateString('en-ZA'):new Date().toLocaleDateString('en-ZA')
         const data = {
             description:inputDesc?inputDesc:"Untitled",
             category:inputCat==="Select Category"?"General":inputCat,
-            amount:inputAmount?inputAmount:0
+            amount:inputAmount?inputAmount:0,
+            date:date
         }
 
         dispatch(addBill(data));
@@ -51,6 +57,9 @@ const Add = () => {
                 </div>
                 <div className="mb-3">
                     <input type="number" className="form-control" id="exampleFormControlInput1" placeholder="Amount" value={inputAmount} onChange={changeAmount}/>
+                </div>
+                <div className="mb-3">
+                    <input type="date" className="form-control" id="exampleFormControlInput1" placeholder="Date" value={inputDate} onChange={changeDate}/>
                 </div>
                 <button className="btn btn-primary" onClick={submitBill}>Add Bill</button>
             </form>

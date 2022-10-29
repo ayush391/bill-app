@@ -29,7 +29,7 @@ const billReducers = (state = initialState, action) => {
     switch (action.type) {
         case "ADD_BILL":
 
-            const { data, date } = action.payload;
+            const { data } = action.payload;
             const id = state.ind+1
 
             const newBills = {
@@ -38,7 +38,6 @@ const billReducers = (state = initialState, action) => {
                     {
                         "id": id,
                         ...data,
-                        "date": date
                     }
                 ],
                 ind:id

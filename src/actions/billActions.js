@@ -3,7 +3,6 @@ export const addBill = (data) => {
         type: "ADD_BILL",
         payload: {
             data: data, 
-            date: new Date().toLocaleDateString()
         }
     }
 }
