@@ -7,11 +7,12 @@ const App = () => {
   return (
     <>
       <Navbar></Navbar>
-      <Router>
+      <Home></Home>
+      {/* <Router>
         <Routes>
           <Route exact path='/' element={<Home/>}></Route>
         </Routes>
-      </Router>
+      </Router> */}
 
     </>
   )
