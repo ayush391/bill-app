@@ -44,7 +44,7 @@ const View = () => {
 
     var currBudgetAmt = inputBudget;
 
-    const updateBill = async (e) => {
+    const updateBill = (e) => {
         e.preventDefault();
         const id = inputId;
         const date = inputDate ? new Date(inputDate).toLocaleDateString('en-ZA') : new Date().toLocaleDateString('en-ZA')
@@ -55,8 +55,8 @@ const View = () => {
             date: date  
         }
 
-        await dispatch(editBill(id, data));
-        await editModal.current.click();
+        dispatch(editBill(id, data));
+        editModal.current.click();
     }
 
     const editFilter = (e) => {
@@ -67,10 +67,11 @@ const View = () => {
 
     const toggleModal = (id) => {
         setInputId(id);
-        setInputDesc(bills[id].description);
-        setInputAmount(bills[id].amount);
-        setInputCat(bills[id].category);
-        setInputDate(bills[id].date)
+        const ind = bills.findIndex(bill=>bill.id===id);
+        setInputDesc(bills[ind].description);
+        setInputAmount(bills[ind].amount);
+        setInputCat(bills[ind].category);
+        setInputDate(bills[ind].date)
 
         editModal.current.click();
     }

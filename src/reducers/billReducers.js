@@ -58,16 +58,16 @@ const initialState = {
             "date": "2022/04/03"
         }
     ],
-    ind: 7,
+    index: 7,
 }
 const billReducers = (state = initialState, action) => {
     switch (action.type) {
         case "ADD_BILL":
 
             const { data } = action.payload;
-            const id = state.ind + 1
+            const id = state.index + 1
 
-            const newBills = {
+            return {
                 bills: [
                     ...state.bills,
                     {
@@ -75,10 +75,9 @@ const billReducers = (state = initialState, action) => {
                         ...data,
                     }
                 ],
-                ind: id
+                index: id
             };
 
-            return newBills
 
 
 
@@ -88,20 +87,20 @@ const billReducers = (state = initialState, action) => {
 
             return {
                 ...state,
-                bills: updatedBills
+                bills: updatedBills,
             }
 
         case "EDIT_BILL":
+            const ind = state.bills.findIndex(bill=>bill.id===action.id);
             return {
-                ...state,
                 bills: [
-                    ...state.bills.slice(0, action.id),
+                    ...state.bills.slice(0, ind),
                     {
-                        ...state.bills[action.id],
+                        ...state.bills[ind],
                         ...action.payload.data
 
                     },
-                    ...state.bills.slice(action.id + 1)
+                    ...state.bills.slice(ind + 1)
                 ]
             }
 

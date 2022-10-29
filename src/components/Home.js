@@ -1,9 +1,17 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Add from './Add'
 import Chart from './Chart'
 import View from './View'
 import { useSelector } from 'react-redux'
 const Home = () => {
+  const [userData, setUserData] = useState({
+    labels: [],
+    datasets: [{
+      label: "Bill Amount",
+      data: [],
+      backgroundColor: ["red"]
+    }],
+  })
   const UserData = useSelector((state) => {
     let chartLabels = {
       "January": 0,
@@ -26,18 +34,25 @@ const Home = () => {
       return chartLabels[month] += data.amount;
     })
 
-      
-    return {
+    // console.log(chartLabels);
+    return ({
       labels: Object.keys(chartLabels),
       datasets: [{
         label: "Bill Amount",
-        data:Object.values(chartLabels),
+        data: Object.values(chartLabels),
         backgroundColor: ["red"]
       }],
-    }
+    })
+  });
+  const bills = useSelector((state) => {
+    return state.billReducers.bills
   });
 
-  const [userData, setUserData] = useState(UserData)
+
+  // const chartRef = useRef(null);
+
+  const updateChart = useEffect(() => setUserData(UserData), [bills])
+
   return (
     <div className='container'>
       <div className='row'>
