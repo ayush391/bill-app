@@ -5,17 +5,39 @@ import View from './View'
 import { useSelector } from 'react-redux'
 const Home = () => {
   const UserData = useSelector((state) => {
-    return state.billReducers.bills
+    let chartLabels = {
+      "January": 0,
+      "Febuary": 0,
+      "March": 0,
+      "April": 0,
+      "May": 0,
+      "June": 0,
+      "July": 0,
+      "August": 0,
+      "September": 0,
+      "October": 0,
+      "Novemeber": 0,
+      "Decemeber": 0,
+    }
+    const allBills = state.billReducers.bills
+
+    allBills.map((data) => {
+      let month = new Date(data.date).toLocaleString("default", { month: "long" });
+      chartLabels[month] += data.amount;
+    })
+
+      
+    return {
+      labels: Object.keys(chartLabels),
+      datasets: [{
+        label: "Bill Amount",
+        data:Object.values(chartLabels),
+        backgroundColor: ["red"]
+      }],
+    }
   });
 
-  const [userData, setUserData] = useState({
-    labels: UserData.map((data) => new Date(data.date).toLocaleString("default", { month: "long" })),
-    datasets: [{
-      label: "Bill Amount",
-      data: UserData.map((data) => data.amount),
-      backgroundColor:["red"]
-    }],
-  })
+  const [userData, setUserData] = useState(UserData)
   return (
     <div className='container'>
       <div className='row'>
