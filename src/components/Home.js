@@ -24,8 +24,8 @@ const Home = () => {
       "August": 0,
       "September": 0,
       "October": 0,
-      "Novemeber": 0,
-      "Decemeber": 0,
+      "November": 0,
+      "December": 0,
     }
     const allBills = state.billReducers.bills
 
