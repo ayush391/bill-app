@@ -8,8 +8,8 @@ const Add = () => {
 
     const [inputDesc, setInputDesc] = useState('');
     const [inputCat, setInputCat] = useState('Select Category');
-    const [inputAmount, setInputAmount] = useState();
-    const [inputDate, setInputDate] = useState();
+    const [inputAmount, setInputAmount] = useState(0);
+    const [inputDate, setInputDate] = useState('');
     const dispatch = useDispatch()
 
     const changeDesc = (event) => {

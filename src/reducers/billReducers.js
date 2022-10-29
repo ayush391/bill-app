@@ -58,7 +58,7 @@ const initialState = {
             "date": "2022/04/03"
         }
     ],
-    ind: 2,
+    ind: 7,
 }
 const billReducers = (state = initialState, action) => {
     switch (action.type) {

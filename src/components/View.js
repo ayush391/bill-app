@@ -16,9 +16,6 @@ const View = () => {
 
     const dispatch = useDispatch();
 
-    const remove = (id) => {
-        dispatch(removeBill(id))
-    }
 
     const [inputId, setInputId] = useState(0);
     const [inputDesc, setInputDesc] = useState('');
@@ -55,16 +52,13 @@ const View = () => {
             description: inputDesc ? inputDesc : "Untitled",
             category: inputCat === "Select Category" ? "General" : inputCat,
             amount: inputAmount ? inputAmount : 0,
-            date: date
+            date: date  
         }
 
         await dispatch(editBill(id, data));
         await editModal.current.click();
     }
 
-    const setBudget = (e) => {
-        // setFilterCat(e.target.value);
-    }
     const editFilter = (e) => {
         setFilterCat(e.target.value);
     }
@@ -111,7 +105,6 @@ const View = () => {
                         if (bill.amount <= inputBudget) {
                             currBudgetAmt = currBudgetAmt - bill.amount;
                         }
-                        console.log(currBudgetAmt);
                         return (
                             <div className='col-lg-3' key={bill.id}>
                                 <div className="card">

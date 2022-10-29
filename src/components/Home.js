@@ -23,7 +23,7 @@ const Home = () => {
 
     allBills.map((data) => {
       let month = new Date(data.date).toLocaleString("default", { month: "long" });
-      chartLabels[month] += data.amount;
+      return chartLabels[month] += data.amount;
     })
 
       
