@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAdd } from '@fortawesome/free-solid-svg-icons'
 
 import { addBill } from '../actions/billActions';
 
@@ -8,7 +10,7 @@ const Add = () => {
 
     const [inputDesc, setInputDesc] = useState('');
     const [inputCat, setInputCat] = useState('Select Category');
-    const [inputAmount, setInputAmount] = useState(0);
+    const [inputAmount, setInputAmount] = useState('');
     const [inputDate, setInputDate] = useState('');
     const dispatch = useDispatch()
 
@@ -38,14 +40,14 @@ const Add = () => {
         dispatch(addBill(data));
     }
     return (
-        <div className='row gy-3'>
-            <h3>Add Bill</h3>
+        <div className='row'>
+            {/* <h3 className='text-center'>Add Bill</h3> */}
             <form>
-                <div className="mb-3">
-                    <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="Description" value={inputDesc} onChange={changeDesc} />
+                <div className="mb-5">
+                    <input type="text" className="form-control input-text-custom" id="exampleFormControlInput1" placeholder="Description" value={inputDesc} onChange={changeDesc} />
                 </div>
-                <div className="mb-3">
-                    <select className="form-select" aria-label="Default select example" value={inputCat} onChange={changeCat}>
+                <div className="mb-4">
+                    <select className="form-select input-select-custom" aria-label="Default select example" value={inputCat} onChange={changeCat}>
                         <option value='Select Category'>Select Category</option>
                         <option value="Food & Dining">Food & Dining</option>
                         <option value="Utility">Utility</option>
@@ -55,13 +57,13 @@ const Add = () => {
                         <option value="Travel">Travel</option>
                     </select>
                 </div>
-                <div className="mb-3">
-                    <input type="number" className="form-control" id="exampleFormControlInput1" placeholder="Amount" value={inputAmount} onChange={changeAmount}/>
+                <div className="mb-5">
+                    <input type="number" className="form-control input-text-custom" id="exampleFormControlInput1" placeholder="Amount" value={inputAmount} onChange={changeAmount}/>
                 </div>
-                <div className="mb-3">
-                    <input type="date" className="form-control" id="exampleFormControlInput1" placeholder="Date" value={inputDate} onChange={changeDate}/>
+                <div className="mb-5">
+                    <input type="date" className="form-control input-text-custom" id="exampleFormControlInput1" placeholder="Date" value={inputDate} onChange={changeDate}/>
                 </div>
-                <button className="btn btn-primary" onClick={submitBill}>Add Bill</button>
+                <button className="btn btn-danger" onClick={submitBill}><FontAwesomeIcon icon={faAdd}></FontAwesomeIcon> Add Bill</button>
             </form>
         </div>
     )

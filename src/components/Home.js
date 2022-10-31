@@ -56,8 +56,17 @@ const Home = () => {
   return (
     <div className='container'>
       <div className='row'>
-        <Chart data={userData}></Chart>
-        <Add></Add>
+
+        <div className='col-lg-8 mt-3 mb-3'>
+          <Chart data={userData}></Chart>
+        </div>
+
+        <div className='col-lg-4 mt-3 mb-3 panel'>
+          <Add></Add>
+        </div>
+      </div>
+      <div className='panel mt-5'>
+
         <View></View>
       </div>
     </div>

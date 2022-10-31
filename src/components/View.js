@@ -1,5 +1,9 @@
 import React, { useRef } from 'react'
 import { useSelector } from 'react-redux'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEdit } from '@fortawesome/free-solid-svg-icons'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
+
 import { removeBill } from '../actions/billActions';
 import { editBill } from '../actions/billActions';
 import { useDispatch } from 'react-redux';
@@ -81,9 +85,9 @@ const View = () => {
         <div className='row gy-3'>
             <h3>Your Bills</h3>
             <div className="mb-3">
-                <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="Your Budget" value={inputBudget} onChange={changeBudget} />
+                <input type="text" className="form-control input-text-custom" id="exampleFormControlInput1" placeholder="Your Budget" value={inputBudget} onChange={changeBudget} />
                 {/* <button className='btn btn-warning mt-2' onClick={()=>setBudget()}>Set</button> */}
-                <select className="form-select mt-2" aria-label="Default select example" value={filterCat} onChange={(e) => editFilter(e)}>
+                <select className="form-select mt-2 input-select-custom" aria-label="Default select example" value={filterCat} onChange={(e) => editFilter(e)}>
                     <option value='Select Category'>Select Category</option>
                     <option value='General'>General</option>
                     <option value="Food & Dining">Food & Dining</option>
@@ -118,8 +122,8 @@ const View = () => {
                                         <li className="list-group-item">{bill.date}</li>
                                     </ul>
                                     <div className='card-footer'>
-                                        <button className='btn btn-warning me-2' onClick={() => toggleModal(bill.id)}>Edit</button>
-                                        <button className='btn btn-danger me-2' onClick={() => dispatch(removeBill(bill.id))}> Delete</button>
+                                        <button className='btn btn-warning me-2' onClick={() => toggleModal(bill.id)}><FontAwesomeIcon icon={faEdit}></FontAwesomeIcon> </button>
+                                        <button className='btn btn-danger me-2' onClick={() => dispatch(removeBill(bill.id))}><FontAwesomeIcon icon={faTrash}></FontAwesomeIcon> </button>
                                     </div>
                                 </div>
                             </div>
@@ -134,9 +138,9 @@ const View = () => {
                 Edit Bill
             </button>
 
-            <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div className="modal-dialog">
-                    <div className="modal-content">
+            <div className="modal fade " id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog ">
+                    <div className="modal-content ">
                         <div className="modal-header">
                             <h1 className="modal-title fs-5" id="exampleModalLabel">Edit Bill</h1>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -144,10 +148,10 @@ const View = () => {
                         <div className="modal-body">
                             <form>
                                 <div className="mb-3">
-                                    <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="Description" value={inputDesc} onChange={changeDesc} />
+                                    <input type="text" className="form-control input-text-custom" id="exampleFormControlInput1" placeholder="Description" value={inputDesc} onChange={changeDesc} />
                                 </div>
                                 <div className="mb-3">
-                                    <select className="form-select" aria-label="Default select example" value={inputCat} onChange={changeCat}>
+                                    <select className="form-select input-select-custom" aria-label="Default select example" value={inputCat} onChange={changeCat}>
                                         <option value='Select Category'>Select Category</option>
                                         <option value="Food & Dining">Food & Dining</option>
                                         <option value="Utility">Utility</option>
@@ -158,16 +162,16 @@ const View = () => {
                                     </select>
                                 </div>
                                 <div className="mb-3">
-                                    <input type="number" className="form-control" id="exampleFormControlInput1" placeholder="Amount" value={inputAmount} onChange={changeAmount} />
+                                    <input type="number" className="form-control input-text-custom" id="exampleFormControlInput1" placeholder="Amount" value={inputAmount} onChange={changeAmount} />
                                 </div>
                                 <div className="mb-3">
-                                    <input type="date" className="form-control" id="exampleFormControlInput1" placeholder="Date" value={inputDate} onChange={changeDate} />
+                                    <input type="date" className="form-control input-text-custom" id="exampleFormControlInput1" placeholder="Date" value={inputDate} onChange={changeDate} />
                                 </div>
                             </form>
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-primary" onClick={(e) => updateBill(e)}>Save changes</button>
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" className="btn btn-warning" onClick={(e) => updateBill(e)}>Save changes</button>
+                            <button type="button" className="btn btn-danger" data-bs-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
