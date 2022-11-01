@@ -85,9 +85,9 @@ const View = () => {
         <div className='row gy-3'>
             <h3>Your Bills</h3>
             <div className="mb-3">
-                <input type="text" className="form-control input-text-custom" id="exampleFormControlInput1" placeholder="Your Budget" value={inputBudget} onChange={changeBudget} />
+                <input type="text" className="form-control mb-3 input-text-custom" id="exampleFormControlInput1" placeholder="Your Budget" value={inputBudget} onChange={changeBudget} />
                 {/* <button className='btn btn-warning mt-2' onClick={()=>setBudget()}>Set</button> */}
-                <select className="form-select mt-2 input-select-custom" aria-label="Default select example" value={filterCat} onChange={(e) => editFilter(e)}>
+                <select className="form-select mb-5 input-select-custom" aria-label="Default select example" value={filterCat} onChange={(e) => editFilter(e)}>
                     <option value='Select Category'>Select Category</option>
                     <option value='General'>General</option>
                     <option value="Food & Dining">Food & Dining</option>
@@ -138,7 +138,7 @@ const View = () => {
                 Edit Bill
             </button>
 
-            <div className="modal fade " id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog ">
                     <div className="modal-content ">
                         <div className="modal-header">

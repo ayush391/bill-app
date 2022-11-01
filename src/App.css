@@ -24,6 +24,7 @@
   border: none;
   border-bottom: 2px solid rgba(255, 0, 0, 0.3);
   border-radius: 0px;
+  box-shadow: none;
 }
 
 .input-select-custom{
@@ -36,6 +37,8 @@
   background-color: rgba(240, 248, 255, 0);
   border: 2px solid rgba(255, 0, 0, 0.3);
   border-radius: 5px;
+  box-shadow: none;
+
 }
 
 .navbar-bg{

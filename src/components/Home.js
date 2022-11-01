@@ -55,7 +55,7 @@ const Home = () => {
 
   return (
     <div className='container'>
-      <div className='row'>
+      <div className='row m-auto'>
 
         <div className='col-lg-8 mt-3 mb-3'>
           <Chart data={userData}></Chart>

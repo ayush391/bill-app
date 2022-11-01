@@ -42,7 +42,7 @@ const Add = () => {
     return (
         <div className='row'>
             {/* <h3 className='text-center'>Add Bill</h3> */}
-            <form>
+            <form >
                 <div className="mb-5">
                     <input type="text" className="form-control input-text-custom" id="exampleFormControlInput1" placeholder="Description" value={inputDesc} onChange={changeDesc} />
                 </div>
